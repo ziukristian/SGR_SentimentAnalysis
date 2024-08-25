@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+    backend:
+        build: ./apis
+        container_name: sentiment_apis
+        ports:
+            - "5000:5000"
+        environment:
+            - DATABASE_URL=postgresql://postgres:postgres@db:5432/sentiment_db
+        depends_on:
+            - db
+
+    db:
+        image: postgres:13
+        restart: always
+        container_name: sentiment_db
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: sentiment_db
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+    frontend:
+        build: ./app
+        container_name: sentiment_app
+        ports:
+            - "3000:80"
+        depends_on:
+            - backend
+
+volumes:
+    postgres_data:
