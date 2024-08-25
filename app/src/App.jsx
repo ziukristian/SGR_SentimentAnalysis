@@ -3,6 +3,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5000";
 
+// Get logs from the server, this function would be in a repository if this was an actual app
 const getLogs = async () => {
     const response = await axios.get(API_URL + "/logs");
     return response.data;
@@ -14,12 +15,14 @@ function App() {
     const [logs, setLogs] = useState([]);
 
     useEffect(() => {
+        // Get logs on app startup
         getLogs().then((data) => {
             setLogs(data);
             console.log(data);
         });
     }, []);
 
+    // Analyze sentiment on button click
     const analyzeSentiment = async () => {
         const response = await axios.post(API_URL + "/analyze", {
             user_input: userInput,

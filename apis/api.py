@@ -35,6 +35,7 @@ with app.app_context():
 
 # ROUTES
 
+# Analyze sentiment
 @app.route('/analyze', methods=['POST'])
 @cross_origin()
 def analyze_sentiment():
@@ -55,6 +56,7 @@ def analyze_sentiment():
     return jsonify(log), 201
 
 
+# Get all the logs
 @app.route('/logs', methods=['GET'])
 @cross_origin()
 def get_logs():

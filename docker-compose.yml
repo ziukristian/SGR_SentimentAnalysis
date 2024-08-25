@@ -1,9 +1,8 @@
-version: "3.8"
-
 services:
     backend:
         build: ./apis
         container_name: sentiment_apis
+        restart: on-failure:3
         ports:
             - "5000:5000"
         environment:
