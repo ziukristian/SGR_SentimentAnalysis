@@ -10,7 +10,7 @@ enter the directory and docker-compose to build and run
 docker-compose up --build
 ```
 
-then browse to the app's [URL](http://localhost:80)
+then browse to the app's [URL](http://localhost:3000)
 
 ```
 http://localhost:80
